@@ -15,10 +15,12 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 
 - `data/sample_alerts.jsonl` - sample alert packets and expected triage metadata.
 - `data/README.md` - dataset format, scope, and safety notes.
+- `docs/dataset_card.md` - dataset card with intended use, limitations, and safety notes.
 - `evaluation/rubric.md` - draft scoring rubric for model triage outputs.
 - `evaluation/output_schema.json` - expected model response shape for structured evaluations.
 - `evaluation/prompt_template.md` - defensive triage prompt template for baseline runs.
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
+- `scripts/validate_dataset.py` - no-dependency dataset validation script.
 
 ## Evaluation Scope
 
@@ -32,6 +34,16 @@ The current scope covers compact alert packets across:
 - Ambiguous cases that require more context
 
 Each example is designed to test whether a model can distinguish evidence from speculation and recommend proportionate defensive review steps.
+
+## Validation
+
+Validate the sample dataset with:
+
+```bash
+python scripts/validate_dataset.py data/sample_alerts.jsonl
+```
+
+The validator checks JSONL parsing, required fields, duplicate IDs, controlled severity and confidence labels, and basic schema consistency.
 
 ## Safety Boundaries
 
@@ -51,3 +63,7 @@ This project does not include:
 - Documentation and reports: CC BY 4.0
 
 See `LICENSE.md` for the repository license policy.
+
+## Contributing
+
+See `CONTRIBUTING.md` before proposing new cases. Contributions should use synthetic examples, follow the schema, and preserve the defensive-only scope.
