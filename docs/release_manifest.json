@@ -1,0 +1,61 @@
+{
+  "artifacts": [
+    {
+      "bytes": 6,
+      "path": "DATASET_VERSION",
+      "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
+    },
+    {
+      "bytes": 17598,
+      "path": "data/sample_alerts.jsonl",
+      "sha256": "7c8f0f66eeb8628e300292ac3f2ccda95e955e2d1853b49567e33dda41386d02"
+    },
+    {
+      "bytes": 2667,
+      "path": "schemas/alert_case.schema.json",
+      "sha256": "a61fbd11bc7dc417184fa8d7c6e43cf1bc4d2086aaf676f54f9a12572f83da99"
+    },
+    {
+      "bytes": 1292,
+      "path": "evaluation/output_schema.json",
+      "sha256": "399be156a31d4485a3d0ce1707586f37a5f321d3c991257b9e8375936208c299"
+    },
+    {
+      "bytes": 2648,
+      "path": "evaluation/rubric.md",
+      "sha256": "0f1c316778d28283bac3872cb2102b1a438f22eb6487d4ccf81ca7b3e723d7d3"
+    },
+    {
+      "bytes": 1248,
+      "path": "evaluation/prompt_template.md",
+      "sha256": "329f163959955e91424de4e5f973db3cd30b84bb44f5dd16f44ca2b874b8a7eb"
+    }
+  ],
+  "case_count": 20,
+  "category_counts": {
+    "cloud": 4,
+    "collaboration": 2,
+    "email": 3,
+    "endpoint": 5,
+    "identity": 4,
+    "network": 2
+  },
+  "confidence_counts": {
+    "high": 4,
+    "low": 1,
+    "medium": 15
+  },
+  "dataset_name": "OpenDefender Triage Benchmark",
+  "dataset_path": "data/sample_alerts.jsonl",
+  "dataset_version": "0.1.0",
+  "first_case_id": "odtb-0001",
+  "last_case_id": "odtb-0020",
+  "manifest_version": 1,
+  "severity_counts": {
+    "critical": 1,
+    "high": 3,
+    "informational": 1,
+    "low": 7,
+    "medium": 8
+  }
+}

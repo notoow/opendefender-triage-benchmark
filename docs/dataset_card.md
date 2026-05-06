@@ -42,6 +42,8 @@ The initial sample covers identity, endpoint, cloud, email, collaboration, and n
 
 See `dataset_summary.md` for generated coverage counts.
 
+See `release_manifest.md` for the current dataset version and artifact hashes.
+
 ## Data Collection and Creation
 
 The sample records are synthetic. They are written to resemble common defensive alert patterns without using real customer logs, personal data, secrets, credentials, or proprietary incident material.

@@ -1,6 +1,8 @@
 * text=auto
 .gitattributes text eol=lf
 .gitignore text eol=lf
+DATASET_VERSION text eol=lf
+CHANGELOG.md text eol=lf
 *.json text eol=lf
 *.jsonl text eol=lf
 *.md text eol=lf

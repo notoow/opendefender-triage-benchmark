@@ -11,6 +11,7 @@
 - Add a deterministic baseline runner for end-to-end smoke tests.
 - Add generated dataset coverage summaries.
 - Add unit tests for the validation, prompt, summary, and scoring scripts.
+- Add deterministic release manifests with artifact hashes.
 
 ## Next
 

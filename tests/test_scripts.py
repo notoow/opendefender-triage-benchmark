@@ -12,6 +12,7 @@ SCRIPTS_DIR = REPO_ROOT / "scripts"
 sys.path.insert(0, str(SCRIPTS_DIR))
 
 import make_prompt_batch  # noqa: E402
+import generate_release_manifest  # noqa: E402
 import score_model_outputs  # noqa: E402
 import summarize_dataset  # noqa: E402
 import validate_dataset  # noqa: E402
@@ -70,6 +71,21 @@ class SummaryTests(unittest.TestCase):
         self.assertIn("| Total cases | 20 |", summary)
         self.assertIn("| endpoint | 5 |", summary)
         self.assertIn("| medium | 8 |", summary)
+
+
+class ReleaseManifestTests(unittest.TestCase):
+    def test_release_manifest_contains_version_and_hashes(self) -> None:
+        manifest = generate_release_manifest.build_manifest(
+            REPO_ROOT,
+            Path("data/sample_alerts.jsonl"),
+            Path("DATASET_VERSION"),
+            [Path(path) for path in generate_release_manifest.DEFAULT_ARTIFACTS],
+        )
+
+        self.assertEqual(manifest["dataset_version"], "0.1.0")
+        self.assertEqual(manifest["case_count"], 20)
+        self.assertEqual(len(manifest["artifacts"]), len(generate_release_manifest.DEFAULT_ARTIFACTS))
+        self.assertTrue(all(len(artifact["sha256"]) == 64 for artifact in manifest["artifacts"]))
 
 
 class ScoringTests(unittest.TestCase):

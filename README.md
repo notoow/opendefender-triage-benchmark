@@ -14,9 +14,13 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 ## Repository Contents
 
 - `data/sample_alerts.jsonl` - sample alert packets and expected triage metadata.
+- `DATASET_VERSION` - current dataset version.
+- `CHANGELOG.md` - version history.
 - `data/README.md` - dataset format, scope, and safety notes.
 - `docs/dataset_card.md` - dataset card with intended use, limitations, and safety notes.
 - `docs/dataset_summary.md` - generated summary of category, severity, and confidence coverage.
+- `docs/release_manifest.md` - generated release manifest with artifact hashes.
+- `docs/release_manifest.json` - machine-readable release manifest.
 - `examples/README.md` - example artifact descriptions.
 - `examples/model_outputs.sample.jsonl` - example model-output records for evaluation runs.
 - `evaluation/README.md` - evaluation run format and workflow.
@@ -25,6 +29,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `evaluation/prompt_template.md` - defensive triage prompt template for baseline runs.
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
 - `scripts/make_prompt_batch.py` - prompt batch generator for benchmark runs.
+- `scripts/generate_release_manifest.py` - deterministic release manifest generator.
 - `scripts/run_heuristic_baseline.py` - deterministic baseline runner for smoke tests.
 - `scripts/summarize_dataset.py` - generated dataset coverage summary.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
@@ -59,6 +64,12 @@ Regenerate the dataset summary:
 
 ```bash
 python scripts/summarize_dataset.py data/sample_alerts.jsonl --output docs/dataset_summary.md
+```
+
+Regenerate the release manifest:
+
+```bash
+python scripts/generate_release_manifest.py --output-json docs/release_manifest.json --output-md docs/release_manifest.md
 ```
 
 Run unit tests:
