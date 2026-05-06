@@ -13,3 +13,4 @@
 - Added issue templates and result submission templates for public collaboration.
 - Added deterministic dataset quality gates and a committed quality report.
 - Added generated reviewer notes for ambiguous, benign, and known-change cases.
+- Added baseline run documentation, a run config schema, a sample config, and config validation.

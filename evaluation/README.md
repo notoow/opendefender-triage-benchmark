@@ -1,6 +1,6 @@
 # Evaluation Workflow
 
-This directory contains the baseline prompt shape, output schema, and scoring rubric for defensive alert triage evaluations.
+This directory contains the baseline prompt shape, run config schema, output schema, and scoring rubric for defensive alert triage evaluations.
 
 ## Input
 
@@ -13,6 +13,18 @@ python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/promp
 ```
 
 Each prompt batch line contains `case_id`, `category`, `alert_title`, and `prompt`.
+
+## Run Configuration
+
+Comparable runs should include a config matching `run_config.schema.json`.
+
+Validate the sample config with:
+
+```bash
+python scripts/validate_run_config.py examples/run_config.sample.json
+```
+
+See `../docs/baseline_runs.md` for the recommended run matrix and model-class labels.
 
 ## Deterministic Baseline
 

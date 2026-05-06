@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/notoow/opendefender-triage-benchmark/schemas/run-config.schema.json",
+  "title": "OpenDefender Evaluation Run Config",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "dataset_version",
+    "repo_commit",
+    "model_label",
+    "model_class",
+    "prompt_template_path",
+    "output_schema_path",
+    "generation",
+    "case_selection",
+    "output_path",
+    "score_report_path",
+    "safety_review"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,63}$"
+    },
+    "dataset_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repo_commit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_label": {
+      "type": "string",
+      "minLength": 1
+    },
+    "model_class": {
+      "type": "string",
+      "enum": [
+        "deterministic_heuristic",
+        "small_general_model",
+        "large_reasoning_model",
+        "local_open_weight_model",
+        "tool_assisted_workflow",
+        "other"
+      ]
+    },
+    "prompt_template_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "output_schema_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["temperature", "max_output_tokens", "structured_output"],
+      "properties": {
+        "temperature": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "structured_output": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "case_selection": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": ["all"]
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^odtb-[0-9]{4,}$"
+          }
+        }
+      ]
+    },
+    "output_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "score_report_path": {
+      "type": "string",
+      "minLength": 1
+    },
+    "safety_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reviewed", "notes"],
+      "properties": {
+        "reviewed": {
+          "type": "boolean"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

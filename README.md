@@ -21,6 +21,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `docs/dataset_summary.md` - generated summary of category, severity, and confidence coverage.
 - `docs/dataset_quality.md` - generated dataset quality-gate report.
 - `docs/reviewer_notes.md` - generated reviewer notes for ambiguous and benign cases.
+- `docs/baseline_runs.md` - baseline run matrix and run config guidance.
 - `docs/baseline_results.md` - generated heuristic baseline results report.
 - `docs/release_manifest.md` - generated release manifest with artifact hashes.
 - `docs/release_manifest.json` - machine-readable release manifest.
@@ -28,10 +29,12 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `docs/result_card_template.md` - template for public result summaries.
 - `examples/README.md` - example artifact descriptions.
 - `examples/model_outputs.sample.jsonl` - example model-output records for evaluation runs.
+- `examples/run_config.sample.json` - sample evaluation run configuration.
 - `examples/result_card.sample.md` - sample result card for the heuristic baseline.
 - `evaluation/README.md` - evaluation run format and workflow.
 - `evaluation/rubric.md` - draft scoring rubric for model triage outputs.
 - `evaluation/output_schema.json` - expected model response shape for structured evaluations.
+- `evaluation/run_config.schema.json` - expected evaluation run configuration shape.
 - `evaluation/prompt_template.md` - defensive triage prompt template for baseline runs.
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
 - `scripts/generate_baseline_report.py` - generated heuristic baseline report.
@@ -43,6 +46,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `scripts/summarize_dataset.py` - generated dataset coverage summary.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
 - `scripts/validate_model_outputs.py` - no-dependency model-output validation script.
+- `scripts/validate_run_config.py` - no-dependency run config validation script.
 - `scripts/score_model_outputs.py` - lightweight reference scorer for model outputs.
 - `tests/` - stdlib unit tests for the validation and scoring scripts.
 
@@ -99,6 +103,12 @@ Regenerate the committed heuristic baseline report:
 
 ```bash
 python scripts/generate_baseline_report.py --output docs/baseline_results.md
+```
+
+Validate the sample run config:
+
+```bash
+python scripts/validate_run_config.py examples/run_config.sample.json
 ```
 
 Run unit tests:
@@ -162,4 +172,4 @@ See `LICENSE.md` for the repository license policy.
 
 See `CONTRIBUTING.md` before proposing new cases. Contributions should use synthetic examples, follow the schema, and preserve the defensive-only scope.
 
-For sharing benchmark runs, see `docs/submitting_results.md` and `docs/result_card_template.md`.
+For sharing benchmark runs, see `docs/baseline_runs.md`, `docs/submitting_results.md`, and `docs/result_card_template.md`.

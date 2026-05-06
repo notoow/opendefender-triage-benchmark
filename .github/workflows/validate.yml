@@ -39,6 +39,9 @@ jobs:
       - name: Run script unit tests
         run: python -m unittest discover -s tests
 
+      - name: Validate sample run config
+        run: python scripts/validate_run_config.py examples/run_config.sample.json
+
       - name: Build prompt batch
         run: python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/prompt_batch.jsonl
 

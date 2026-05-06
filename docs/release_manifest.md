@@ -70,13 +70,16 @@
 | `data/sample_alerts.jsonl` | 21068 | `53b1a9ff2412ffa8361beda2e15d4fdf5a433c747baa554ab29e8d522670f5b2` |
 | `schemas/alert_case.schema.json` | 3334 | `124dcd1d730fa0d820bc86aceada4cf2e0cd37e705da46bb653e477830426831` |
 | `evaluation/output_schema.json` | 1292 | `399be156a31d4485a3d0ce1707586f37a5f321d3c991257b9e8375936208c299` |
+| `evaluation/run_config.schema.json` | 2564 | `a6dd9a6a782e47fa36d89ebdb8fc721ac187502751254329d3b7737690212fe4` |
 | `evaluation/rubric.md` | 2648 | `0f1c316778d28283bac3872cb2102b1a438f22eb6487d4ccf81ca7b3e723d7d3` |
 | `evaluation/prompt_template.md` | 1248 | `329f163959955e91424de4e5f973db3cd30b84bb44f5dd16f44ca2b874b8a7eb` |
+| `docs/baseline_runs.md` | 3710 | `cfe8564c003e5666d5b3a1e1d6a53d9ef0ff556ba0edb6c5526b0453e1257689` |
 | `docs/dataset_quality.md` | 2256 | `8511c177624bbbe9f09a4db76b0a88e593e76e3c74f4d4703dd3c0513ede8382` |
 | `docs/reviewer_notes.md` | 14752 | `7a74b90fa112cb6b4a597f06e6bb37ded05c424bcb03e476b594332d09e1ccf9` |
 | `docs/baseline_results.md` | 3814 | `cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde` |
-| `docs/submitting_results.md` | 1644 | `e84faefca713616efad508e77d6e278b12f8d1caa88088a5ed20f2b9080b1109` |
+| `docs/submitting_results.md` | 1804 | `5577827903cbc5c939bd92cd62684a06afd4e6d0ac4d64b5dd3c5f493fe1ec0a` |
 | `docs/result_card_template.md` | 886 | `e2f2381db81206d28838d9766838ec7f85094fd1dc31830393a3c9285f05e3c3` |
+| `examples/run_config.sample.json` | 769 | `178b8879ea7699c2a9bd3bf1e51e24873b2c9210857982cba6f712a50a204dad` |
 
 Regenerate with:
 

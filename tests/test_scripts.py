@@ -20,10 +20,12 @@ import score_model_outputs  # noqa: E402
 import summarize_dataset  # noqa: E402
 import validate_dataset  # noqa: E402
 import validate_model_outputs  # noqa: E402
+import validate_run_config  # noqa: E402
 
 
 DATASET_PATH = REPO_ROOT / "data" / "sample_alerts.jsonl"
 SAMPLE_OUTPUTS_PATH = REPO_ROOT / "examples" / "model_outputs.sample.jsonl"
+SAMPLE_RUN_CONFIG_PATH = REPO_ROOT / "examples" / "run_config.sample.json"
 
 
 class DatasetValidationTests(unittest.TestCase):
@@ -120,6 +122,23 @@ class ReviewerNotesTests(unittest.TestCase):
         }
 
         self.assertTrue(generate_reviewer_notes.selected_for_notes(record))
+
+
+class RunConfigTests(unittest.TestCase):
+    def test_sample_run_config_validates(self) -> None:
+        config = validate_run_config.load_json(SAMPLE_RUN_CONFIG_PATH)
+        errors = validate_run_config.validate_config(config)
+
+        self.assertEqual(errors, [])
+        self.assertEqual(config["model_class"], "deterministic_heuristic")
+
+    def test_run_config_rejects_duplicate_case_selection(self) -> None:
+        config = validate_run_config.load_json(SAMPLE_RUN_CONFIG_PATH)
+        config["case_selection"] = ["odtb-0001", "odtb-0001"]
+
+        errors = validate_run_config.validate_config(config)
+
+        self.assertIn("case_selection[1] duplicates odtb-0001", errors)
 
 
 class ReleaseManifestTests(unittest.TestCase):

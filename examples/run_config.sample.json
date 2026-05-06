@@ -1,0 +1,22 @@
+{
+  "case_selection": "all",
+  "dataset_version": "0.1.0",
+  "generation": {
+    "max_output_tokens": 800,
+    "notes": "Deterministic local heuristic baseline for pipeline smoke tests.",
+    "structured_output": true,
+    "temperature": 0
+  },
+  "model_class": "deterministic_heuristic",
+  "model_label": "heuristic-baseline",
+  "output_path": ".tmp/heuristic_outputs.jsonl",
+  "output_schema_path": "evaluation/output_schema.json",
+  "prompt_template_path": "evaluation/prompt_template.md",
+  "repo_commit": "local",
+  "run_id": "heuristic-baseline-sample",
+  "safety_review": {
+    "notes": "Outputs contain defensive triage labels only and are checked by the scorer safety flag.",
+    "reviewed": true
+  },
+  "score_report_path": ".tmp/heuristic_score_report.md"
+}

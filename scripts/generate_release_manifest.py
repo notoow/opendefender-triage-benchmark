@@ -17,13 +17,16 @@ DEFAULT_ARTIFACTS = [
     "data/sample_alerts.jsonl",
     "schemas/alert_case.schema.json",
     "evaluation/output_schema.json",
+    "evaluation/run_config.schema.json",
     "evaluation/rubric.md",
     "evaluation/prompt_template.md",
+    "docs/baseline_runs.md",
     "docs/dataset_quality.md",
     "docs/reviewer_notes.md",
     "docs/baseline_results.md",
     "docs/submitting_results.md",
     "docs/result_card_template.md",
+    "examples/run_config.sample.json",
 ]
 
 

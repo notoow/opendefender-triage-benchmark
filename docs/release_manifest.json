@@ -21,6 +21,11 @@
       "sha256": "399be156a31d4485a3d0ce1707586f37a5f321d3c991257b9e8375936208c299"
     },
     {
+      "bytes": 2564,
+      "path": "evaluation/run_config.schema.json",
+      "sha256": "a6dd9a6a782e47fa36d89ebdb8fc721ac187502751254329d3b7737690212fe4"
+    },
+    {
       "bytes": 2648,
       "path": "evaluation/rubric.md",
       "sha256": "0f1c316778d28283bac3872cb2102b1a438f22eb6487d4ccf81ca7b3e723d7d3"
@@ -29,6 +34,11 @@
       "bytes": 1248,
       "path": "evaluation/prompt_template.md",
       "sha256": "329f163959955e91424de4e5f973db3cd30b84bb44f5dd16f44ca2b874b8a7eb"
+    },
+    {
+      "bytes": 3710,
+      "path": "docs/baseline_runs.md",
+      "sha256": "cfe8564c003e5666d5b3a1e1d6a53d9ef0ff556ba0edb6c5526b0453e1257689"
     },
     {
       "bytes": 2256,
@@ -46,14 +56,19 @@
       "sha256": "cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde"
     },
     {
-      "bytes": 1644,
+      "bytes": 1804,
       "path": "docs/submitting_results.md",
-      "sha256": "e84faefca713616efad508e77d6e278b12f8d1caa88088a5ed20f2b9080b1109"
+      "sha256": "5577827903cbc5c939bd92cd62684a06afd4e6d0ac4d64b5dd3c5f493fe1ec0a"
     },
     {
       "bytes": 886,
       "path": "docs/result_card_template.md",
       "sha256": "e2f2381db81206d28838d9766838ec7f85094fd1dc31830393a3c9285f05e3c3"
+    },
+    {
+      "bytes": 769,
+      "path": "examples/run_config.sample.json",
+      "sha256": "178b8879ea7699c2a9bd3bf1e51e24873b2c9210857982cba6f712a50a204dad"
     }
   ],
   "case_count": 20,

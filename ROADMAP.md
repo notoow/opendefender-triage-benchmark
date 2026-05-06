@@ -16,11 +16,11 @@
 - Add public contribution and result-submission templates.
 - Add deterministic dataset quality gates and a committed quality report.
 - Add reviewer notes for ambiguous and benign cases.
+- Add baseline run documentation and run config validation.
 
 ## Next
 
 - Expand sample coverage across identity, endpoint, cloud, email, and collaboration scenarios.
-- Add baseline run documentation for multiple model classes.
 - Add baseline result cards for representative model families.
 
 ## Later
