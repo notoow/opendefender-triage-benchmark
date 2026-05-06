@@ -36,6 +36,11 @@
       "sha256": "8511c177624bbbe9f09a4db76b0a88e593e76e3c74f4d4703dd3c0513ede8382"
     },
     {
+      "bytes": 14752,
+      "path": "docs/reviewer_notes.md",
+      "sha256": "7a74b90fa112cb6b4a597f06e6bb37ded05c424bcb03e476b594332d09e1ccf9"
+    },
+    {
       "bytes": 3814,
       "path": "docs/baseline_results.md",
       "sha256": "cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde"

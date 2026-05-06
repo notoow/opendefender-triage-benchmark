@@ -6,6 +6,7 @@ The sample data is intentionally compact. It is meant to illustrate the benchmar
 
 See `../docs/dataset_summary.md` for generated category, severity, confidence, difficulty, failure-mode, and known-change coverage.
 See `../docs/dataset_quality.md` for deterministic quality gates covering breadth, balance, per-case metadata depth, and sensitive-token scans.
+See `../docs/reviewer_notes.md` for generated reviewer notes on ambiguous, benign, and known-change cases.
 
 ## Record Format
 

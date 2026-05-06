@@ -15,6 +15,7 @@ import make_prompt_batch  # noqa: E402
 import check_dataset_quality  # noqa: E402
 import generate_baseline_report  # noqa: E402
 import generate_release_manifest  # noqa: E402
+import generate_reviewer_notes  # noqa: E402
 import score_model_outputs  # noqa: E402
 import summarize_dataset  # noqa: E402
 import validate_dataset  # noqa: E402
@@ -99,6 +100,26 @@ class QualityTests(unittest.TestCase):
         hits = check_dataset_quality.find_sensitive_hits(records)
 
         self.assertEqual(hits, ["odtb-9999: matched email address"])
+
+
+class ReviewerNotesTests(unittest.TestCase):
+    def test_reviewer_notes_select_ambiguous_and_benign_cases(self) -> None:
+        records = generate_reviewer_notes.load_jsonl(DATASET_PATH)
+        selected = generate_reviewer_notes.selected_records(records)
+        report = generate_reviewer_notes.format_markdown(records, Path("data/sample_alerts.jsonl"))
+
+        self.assertEqual(len(selected), 14)
+        self.assertIn("| Cases with reviewer notes | 14 |", report)
+        self.assertIn("## odtb-0003: Service account created access key outside normal deployment window", report)
+        self.assertIn("Check whether the response verifies the change ticket", report)
+
+    def test_reviewer_note_selection_uses_known_change_ticket(self) -> None:
+        record = {
+            "alert_packet": {"known_change_ticket": True},
+            "evaluation_metadata": {"tags": [], "failure_modes": []},
+        }
+
+        self.assertTrue(generate_reviewer_notes.selected_for_notes(record))
 
 
 class ReleaseManifestTests(unittest.TestCase):

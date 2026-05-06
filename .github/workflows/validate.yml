@@ -27,6 +27,9 @@ jobs:
       - name: Check dataset quality gates
         run: python scripts/check_dataset_quality.py data/sample_alerts.jsonl --output docs/dataset_quality.md --check
 
+      - name: Check reviewer notes
+        run: python scripts/generate_reviewer_notes.py data/sample_alerts.jsonl --output docs/reviewer_notes.md --check
+
       - name: Check baseline report
         run: python scripts/generate_baseline_report.py --output docs/baseline_results.md --check
 

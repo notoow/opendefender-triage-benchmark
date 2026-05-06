@@ -45,6 +45,8 @@ See `dataset_summary.md` for generated coverage counts.
 
 See `dataset_quality.md` for deterministic quality gates covering breadth, balance, per-case metadata depth, and sensitive-token scans.
 
+See `reviewer_notes.md` for generated reviewer notes on ambiguous, benign, and known-change cases.
+
 See `release_manifest.md` for the current dataset version and artifact hashes.
 
 ## Data Collection and Creation

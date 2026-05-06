@@ -73,6 +73,7 @@
 | `evaluation/rubric.md` | 2648 | `0f1c316778d28283bac3872cb2102b1a438f22eb6487d4ccf81ca7b3e723d7d3` |
 | `evaluation/prompt_template.md` | 1248 | `329f163959955e91424de4e5f973db3cd30b84bb44f5dd16f44ca2b874b8a7eb` |
 | `docs/dataset_quality.md` | 2256 | `8511c177624bbbe9f09a4db76b0a88e593e76e3c74f4d4703dd3c0513ede8382` |
+| `docs/reviewer_notes.md` | 14752 | `7a74b90fa112cb6b4a597f06e6bb37ded05c424bcb03e476b594332d09e1ccf9` |
 | `docs/baseline_results.md` | 3814 | `cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde` |
 | `docs/submitting_results.md` | 1644 | `e84faefca713616efad508e77d6e278b12f8d1caa88088a5ed20f2b9080b1109` |
 | `docs/result_card_template.md` | 886 | `e2f2381db81206d28838d9766838ec7f85094fd1dc31830393a3c9285f05e3c3` |

@@ -20,6 +20,7 @@ DEFAULT_ARTIFACTS = [
     "evaluation/rubric.md",
     "evaluation/prompt_template.md",
     "docs/dataset_quality.md",
+    "docs/reviewer_notes.md",
     "docs/baseline_results.md",
     "docs/submitting_results.md",
     "docs/result_card_template.md",

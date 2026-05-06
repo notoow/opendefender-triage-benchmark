@@ -20,6 +20,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `docs/dataset_card.md` - dataset card with intended use, limitations, and safety notes.
 - `docs/dataset_summary.md` - generated summary of category, severity, and confidence coverage.
 - `docs/dataset_quality.md` - generated dataset quality-gate report.
+- `docs/reviewer_notes.md` - generated reviewer notes for ambiguous and benign cases.
 - `docs/baseline_results.md` - generated heuristic baseline results report.
 - `docs/release_manifest.md` - generated release manifest with artifact hashes.
 - `docs/release_manifest.json` - machine-readable release manifest.
@@ -37,6 +38,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `scripts/make_prompt_batch.py` - prompt batch generator for benchmark runs.
 - `scripts/generate_release_manifest.py` - deterministic release manifest generator.
 - `scripts/check_dataset_quality.py` - deterministic dataset quality-gate checker.
+- `scripts/generate_reviewer_notes.py` - reviewer-note generator for ambiguous and benign cases.
 - `scripts/run_heuristic_baseline.py` - deterministic baseline runner for smoke tests.
 - `scripts/summarize_dataset.py` - generated dataset coverage summary.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
@@ -79,6 +81,12 @@ Regenerate the dataset quality report:
 
 ```bash
 python scripts/check_dataset_quality.py data/sample_alerts.jsonl --output docs/dataset_quality.md
+```
+
+Regenerate reviewer notes:
+
+```bash
+python scripts/generate_reviewer_notes.py data/sample_alerts.jsonl --output docs/reviewer_notes.md
 ```
 
 Regenerate the release manifest:

@@ -15,12 +15,12 @@
 - Add committed heuristic baseline results checked in CI.
 - Add public contribution and result-submission templates.
 - Add deterministic dataset quality gates and a committed quality report.
+- Add reviewer notes for ambiguous and benign cases.
 
 ## Next
 
 - Expand sample coverage across identity, endpoint, cloud, email, and collaboration scenarios.
 - Add baseline run documentation for multiple model classes.
-- Add reviewer notes for ambiguous and benign cases.
 - Add baseline result cards for representative model families.
 
 ## Later

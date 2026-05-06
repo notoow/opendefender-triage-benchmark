@@ -12,3 +12,4 @@
 - Added a committed heuristic baseline report checked in CI.
 - Added issue templates and result submission templates for public collaboration.
 - Added deterministic dataset quality gates and a committed quality report.
+- Added generated reviewer notes for ambiguous, benign, and known-change cases.
