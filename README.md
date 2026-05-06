@@ -14,7 +14,11 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 ## Repository Contents
 
 - `data/sample_alerts.jsonl` - sample alert packets and expected triage metadata.
+- `data/README.md` - dataset format, scope, and safety notes.
 - `evaluation/rubric.md` - draft scoring rubric for model triage outputs.
+- `evaluation/output_schema.json` - expected model response shape for structured evaluations.
+- `evaluation/prompt_template.md` - defensive triage prompt template for baseline runs.
+- `schemas/alert_case.schema.json` - JSON Schema for alert case records.
 
 ## Evaluation Scope
 
@@ -40,9 +44,10 @@ This project does not include:
 - Real customer logs
 - Personal data or confidential incident data
 
-## Planned Licensing
+## Licensing
 
 - Dataset: CC BY 4.0
-- Evaluation scripts and templates: MIT License
+- Evaluation schemas, scripts, and templates: MIT License
 - Documentation and reports: CC BY 4.0
 
+See `LICENSE.md` for the repository license policy.

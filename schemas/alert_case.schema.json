@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/notoow/opendefender-triage-benchmark/schemas/alert-case.schema.json",
+  "title": "OpenDefender Alert Case",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "category", "alert_title", "alert_packet", "expected"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^odtb-[0-9]{4,}$"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["identity", "endpoint", "cloud", "email", "collaboration", "network", "other"]
+    },
+    "alert_title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "alert_packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source",
+        "signals",
+        "asset",
+        "business_context",
+        "time_window",
+        "known_change_ticket"
+      ],
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "signals": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "asset": {
+          "type": "string",
+          "minLength": 1
+        },
+        "business_context": {
+          "type": "string",
+          "minLength": 1
+        },
+        "time_window": {
+          "type": "string",
+          "minLength": 1
+        },
+        "known_change_ticket": {
+          "type": "boolean"
+        }
+      }
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "incident_type",
+        "severity",
+        "confidence",
+        "key_evidence",
+        "missing_information",
+        "safe_actions"
+      ],
+      "properties": {
+        "incident_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["informational", "low", "medium", "high", "critical"]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "key_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "missing_information": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "safe_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
