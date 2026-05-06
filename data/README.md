@@ -5,6 +5,7 @@
 The sample data is intentionally compact. It is meant to illustrate the benchmark format, not to represent a complete production corpus.
 
 See `../docs/dataset_summary.md` for generated category, severity, confidence, difficulty, failure-mode, and known-change coverage.
+See `../docs/dataset_quality.md` for deterministic quality gates covering breadth, balance, per-case metadata depth, and sensitive-token scans.
 
 ## Record Format
 

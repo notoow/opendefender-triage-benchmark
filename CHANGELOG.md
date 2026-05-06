@@ -11,3 +11,4 @@
 - Added grouped scoring summaries by category, difficulty, and target failure mode.
 - Added a committed heuristic baseline report checked in CI.
 - Added issue templates and result submission templates for public collaboration.
+- Added deterministic dataset quality gates and a committed quality report.

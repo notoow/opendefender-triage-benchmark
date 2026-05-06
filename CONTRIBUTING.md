@@ -19,11 +19,12 @@ Before submitting changes:
 
 1. Run `python scripts/validate_dataset.py data/sample_alerts.jsonl`.
 2. Run `python scripts/summarize_dataset.py data/sample_alerts.jsonl --output docs/dataset_summary.md --check`.
-3. Run `python scripts/generate_baseline_report.py --output docs/baseline_results.md --check`.
-4. Run `python scripts/generate_release_manifest.py --output-json docs/release_manifest.json --output-md docs/release_manifest.md --check`.
-5. Confirm each case has a clear defensive purpose.
-6. Confirm recommended actions are proportionate and reviewable by a human analyst.
-7. Confirm labels do not depend on facts outside the alert packet.
+3. Run `python scripts/check_dataset_quality.py data/sample_alerts.jsonl --output docs/dataset_quality.md --check`.
+4. Run `python scripts/generate_baseline_report.py --output docs/baseline_results.md --check`.
+5. Run `python scripts/generate_release_manifest.py --output-json docs/release_manifest.json --output-md docs/release_manifest.md --check`.
+6. Confirm each case has a clear defensive purpose.
+7. Confirm recommended actions are proportionate and reviewable by a human analyst.
+8. Confirm labels do not depend on facts outside the alert packet.
 
 ## Label Guidance
 

@@ -14,6 +14,7 @@
 - Add deterministic release manifests with artifact hashes.
 - Add committed heuristic baseline results checked in CI.
 - Add public contribution and result-submission templates.
+- Add deterministic dataset quality gates and a committed quality report.
 
 ## Next
 

@@ -12,6 +12,7 @@ SCRIPTS_DIR = REPO_ROOT / "scripts"
 sys.path.insert(0, str(SCRIPTS_DIR))
 
 import make_prompt_batch  # noqa: E402
+import check_dataset_quality  # noqa: E402
 import generate_baseline_report  # noqa: E402
 import generate_release_manifest  # noqa: E402
 import score_model_outputs  # noqa: E402
@@ -75,6 +76,29 @@ class SummaryTests(unittest.TestCase):
         self.assertIn("## Difficulty Distribution", summary)
         self.assertIn("| hard | 7 |", summary)
         self.assertIn("| evidence_grounding | 9 |", summary)
+
+
+class QualityTests(unittest.TestCase):
+    def test_dataset_quality_gates_pass(self) -> None:
+        records = check_dataset_quality.load_jsonl(DATASET_PATH)
+        checks = check_dataset_quality.build_quality_checks(records)
+        report = check_dataset_quality.format_markdown(records, checks, Path("data/sample_alerts.jsonl"))
+
+        self.assertTrue(all(check.passed for check in checks))
+        self.assertIn("| Failed checks | 0 |", report)
+        self.assertIn("| Sensitive token scan | pass | no sensitive-token patterns detected |", report)
+
+    def test_sensitive_token_scan_detects_email_like_values(self) -> None:
+        records = [
+            {
+                "id": "odtb-9999",
+                "alert_packet": {"business_context": "contact alice@example.com"},
+            }
+        ]
+
+        hits = check_dataset_quality.find_sensitive_hits(records)
+
+        self.assertEqual(hits, ["odtb-9999: matched email address"])
 
 
 class ReleaseManifestTests(unittest.TestCase):
