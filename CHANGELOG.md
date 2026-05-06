@@ -10,3 +10,4 @@
 - Added case-level evaluation metadata for difficulty, coverage tags, and target failure modes.
 - Added grouped scoring summaries by category, difficulty, and target failure mode.
 - Added a committed heuristic baseline report checked in CI.
+- Added issue templates and result submission templates for public collaboration.

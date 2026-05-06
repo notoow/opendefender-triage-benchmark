@@ -18,12 +18,21 @@ New alert cases should:
 Before submitting changes:
 
 1. Run `python scripts/validate_dataset.py data/sample_alerts.jsonl`.
-2. Confirm each case has a clear defensive purpose.
-3. Confirm recommended actions are proportionate and reviewable by a human analyst.
-4. Confirm labels do not depend on facts outside the alert packet.
+2. Run `python scripts/summarize_dataset.py data/sample_alerts.jsonl --output docs/dataset_summary.md --check`.
+3. Run `python scripts/generate_baseline_report.py --output docs/baseline_results.md --check`.
+4. Run `python scripts/generate_release_manifest.py --output-json docs/release_manifest.json --output-md docs/release_manifest.md --check`.
+5. Confirm each case has a clear defensive purpose.
+6. Confirm recommended actions are proportionate and reviewable by a human analyst.
+7. Confirm labels do not depend on facts outside the alert packet.
 
 ## Label Guidance
 
 Use `severity` to describe potential operational risk based on the available evidence. Use `confidence` to describe how strongly the alert packet supports the expected classification.
 
 Do not use high confidence when important context is missing.
+
+## Result Submissions
+
+Use `docs/submitting_results.md` for benchmark run submissions. Public results should include the dataset version, repository commit, model or system label, validation command, score report, and any notable safety or failure-mode observations.
+
+Use `docs/result_card_template.md` for concise public summaries.

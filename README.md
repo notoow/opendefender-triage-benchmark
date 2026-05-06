@@ -22,8 +22,11 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `docs/baseline_results.md` - generated heuristic baseline results report.
 - `docs/release_manifest.md` - generated release manifest with artifact hashes.
 - `docs/release_manifest.json` - machine-readable release manifest.
+- `docs/submitting_results.md` - guidance for sharing reproducible benchmark results.
+- `docs/result_card_template.md` - template for public result summaries.
 - `examples/README.md` - example artifact descriptions.
 - `examples/model_outputs.sample.jsonl` - example model-output records for evaluation runs.
+- `examples/result_card.sample.md` - sample result card for the heuristic baseline.
 - `evaluation/README.md` - evaluation run format and workflow.
 - `evaluation/rubric.md` - draft scoring rubric for model triage outputs.
 - `evaluation/output_schema.json` - expected model response shape for structured evaluations.
@@ -142,3 +145,5 @@ See `LICENSE.md` for the repository license policy.
 ## Contributing
 
 See `CONTRIBUTING.md` before proposing new cases. Contributions should use synthetic examples, follow the schema, and preserve the defensive-only scope.
+
+For sharing benchmark runs, see `docs/submitting_results.md` and `docs/result_card_template.md`.

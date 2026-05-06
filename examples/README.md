@@ -5,6 +5,7 @@ This directory contains small example artifacts for exercising the validation an
 ## Files
 
 - `model_outputs.sample.jsonl` - sample structured model-output records for two benchmark cases.
+- `result_card.sample.md` - sample public result card for the deterministic heuristic baseline.
 
 ## Generate Prompt Inputs
 

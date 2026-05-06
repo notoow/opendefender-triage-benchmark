@@ -1,0 +1,70 @@
+name: Case proposal
+description: Propose a new synthetic defensive alert case.
+title: "[case] "
+labels: ["case-proposal"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for synthetic defensive cases only. Do not include real logs, personal data, secrets, credentials, malware samples, exploit code, or offensive instructions.
+  - type: input
+    id: category
+    attributes:
+      label: Category
+      description: Suggested category such as identity, endpoint, cloud, email, collaboration, or network.
+      placeholder: identity
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Alert title
+      description: Short human-readable title for the proposed case.
+      placeholder: Suspicious sign-in followed by MFA denial
+    validations:
+      required: true
+  - type: textarea
+    id: alert_packet
+    attributes:
+      label: Synthetic alert packet
+      description: Describe the synthetic signals, asset context, time window, and known-change context.
+      placeholder: |
+        source:
+        signals:
+        asset:
+        business_context:
+        time_window:
+        known_change_ticket:
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected triage behavior
+      description: Include incident type, severity, confidence, key evidence, missing information, and safe actions.
+    validations:
+      required: true
+  - type: textarea
+    id: metadata
+    attributes:
+      label: Evaluation metadata
+      description: Suggested difficulty, tags, and target failure modes.
+      placeholder: |
+        difficulty:
+        tags:
+        failure_modes:
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety checks
+      options:
+        - label: This case is synthetic or fully de-identified.
+          required: true
+        - label: This case contains no personal data, secrets, credentials, tokens, or real customer logs.
+          required: true
+        - label: This case contains no exploit code, offensive instructions, persistence steps, or evasion steps.
+          required: true
+        - label: Recommended actions are defensive and proportionate.
+          required: true

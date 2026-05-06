@@ -13,6 +13,7 @@
 - Add unit tests for the validation, prompt, summary, and scoring scripts.
 - Add deterministic release manifests with artifact hashes.
 - Add committed heuristic baseline results checked in CI.
+- Add public contribution and result-submission templates.
 
 ## Next
 

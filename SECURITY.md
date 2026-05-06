@@ -18,3 +18,5 @@ If sensitive material is accidentally included in an issue, pull request, or dis
 ## Reporting Problems
 
 For safety issues in benchmark content, open an issue with a minimal description that does not repeat sensitive or harmful material. If the issue itself would expose sensitive data, use GitHub's private vulnerability reporting flow when available.
+
+Use the safety content report issue template for public, non-sensitive reports about benchmark content.

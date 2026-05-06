@@ -1,0 +1,43 @@
+name: Safety content report
+description: Report a safety, privacy, or scope issue in benchmark content.
+title: "[safety] "
+labels: ["safety"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for public, non-sensitive descriptions only. If repeating the issue would expose sensitive information, do not paste it into the issue.
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue type
+      options:
+        - Possible personal or sensitive data
+        - Possible offensive or unsafe content
+        - Overly specific operational detail
+        - Licensing or attribution concern
+        - Other safety concern
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: File path, case ID, or documentation section.
+      placeholder: data/sample_alerts.jsonl / odtb-0001
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Minimal description
+      description: Describe the issue without repeating sensitive or harmful material.
+    validations:
+      required: true
+  - type: textarea
+    id: suggested_fix
+    attributes:
+      label: Suggested fix
+      description: Optional safe replacement, redaction, or scope change.
+    validations:
+      required: false

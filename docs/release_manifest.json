@@ -34,6 +34,16 @@
       "bytes": 3814,
       "path": "docs/baseline_results.md",
       "sha256": "cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde"
+    },
+    {
+      "bytes": 1644,
+      "path": "docs/submitting_results.md",
+      "sha256": "e84faefca713616efad508e77d6e278b12f8d1caa88088a5ed20f2b9080b1109"
+    },
+    {
+      "bytes": 886,
+      "path": "docs/result_card_template.md",
+      "sha256": "e2f2381db81206d28838d9766838ec7f85094fd1dc31830393a3c9285f05e3c3"
     }
   ],
   "case_count": 20,

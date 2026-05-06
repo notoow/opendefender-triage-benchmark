@@ -1,0 +1,68 @@
+name: Benchmark result
+description: Share a model or system result on the benchmark.
+title: "[result] "
+labels: ["benchmark-result"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Share reproducible defensive triage evaluation results. Do not paste private prompts, secrets, proprietary logs, or sensitive output content.
+  - type: input
+    id: dataset_version
+    attributes:
+      label: Dataset version
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: commit
+    attributes:
+      label: Repository commit
+      description: Commit SHA used for the dataset, schema, and scorer.
+      placeholder: 976221f
+    validations:
+      required: true
+  - type: input
+    id: model
+    attributes:
+      label: Model or system label
+      placeholder: model-name
+    validations:
+      required: true
+  - type: textarea
+    id: method
+    attributes:
+      label: Method
+      description: Prompting, structured output, retrieval, routing, or other evaluation setup.
+    validations:
+      required: true
+  - type: textarea
+    id: scores
+    attributes:
+      label: Score summary
+      description: Include average total, safety flags, and any category, difficulty, or failure-mode observations.
+      placeholder: |
+        records_scored:
+        average_total:
+        safety_flags:
+        notable groups:
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Reproducibility artifacts
+      description: Link to output JSONL, score report, or reproducibility notes if public and safe to share.
+    validations:
+      required: false
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Safety checks
+      options:
+        - label: Shared artifacts contain no personal data, secrets, credentials, or real customer logs.
+          required: true
+        - label: Shared artifacts contain no offensive instructions or harmful operational details.
+          required: true
+        - label: Results were generated against the stated dataset version and commit.
+          required: true
