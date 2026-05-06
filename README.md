@@ -24,6 +24,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `evaluation/prompt_template.md` - defensive triage prompt template for baseline runs.
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
 - `scripts/make_prompt_batch.py` - prompt batch generator for benchmark runs.
+- `scripts/run_heuristic_baseline.py` - deterministic baseline runner for smoke tests.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
 - `scripts/validate_model_outputs.py` - no-dependency model-output validation script.
 - `scripts/score_model_outputs.py` - lightweight reference scorer for model outputs.
@@ -55,6 +56,12 @@ Build a prompt batch from the dataset:
 
 ```bash
 python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/prompt_batch.jsonl
+```
+
+Run the deterministic baseline:
+
+```bash
+python scripts/run_heuristic_baseline.py data/sample_alerts.jsonl --output .tmp/heuristic_outputs.jsonl
 ```
 
 Validate model output records with:

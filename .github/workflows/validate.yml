@@ -24,8 +24,17 @@ jobs:
       - name: Build prompt batch
         run: python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/prompt_batch.jsonl
 
+      - name: Run heuristic baseline
+        run: python scripts/run_heuristic_baseline.py data/sample_alerts.jsonl --output .tmp/heuristic_outputs.jsonl
+
       - name: Validate sample model outputs
         run: python scripts/validate_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
 
+      - name: Validate heuristic baseline outputs
+        run: python scripts/validate_model_outputs.py data/sample_alerts.jsonl .tmp/heuristic_outputs.jsonl
+
       - name: Score sample model outputs
         run: python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl --markdown .tmp/score_report.md
+
+      - name: Score heuristic baseline outputs
+        run: python scripts/score_model_outputs.py data/sample_alerts.jsonl .tmp/heuristic_outputs.jsonl --markdown .tmp/heuristic_score_report.md

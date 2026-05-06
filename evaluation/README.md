@@ -14,6 +14,16 @@ python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/promp
 
 Each prompt batch line contains `case_id`, `category`, `alert_title`, and `prompt`.
 
+## Deterministic Baseline
+
+Run the simple heuristic baseline with:
+
+```bash
+python scripts/run_heuristic_baseline.py data/sample_alerts.jsonl --output .tmp/heuristic_outputs.jsonl
+```
+
+This baseline is not intended to be strong. It is a smoke test for the dataset, output schema, validators, and scoring pipeline.
+
 ## Output Record Format
 
 Evaluation runs should store one JSON object per line:
