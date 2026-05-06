@@ -66,6 +66,8 @@ python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_ou
 
 The automated scorer is intentionally simple. Treat it as a consistency check and baseline comparison aid, not as a replacement for expert review.
 
+The scorer reports per-case scores and grouped averages by category, difficulty, and target failure mode when the dataset includes `evaluation_metadata`.
+
 To write a Markdown report:
 
 ```bash

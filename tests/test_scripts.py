@@ -112,10 +112,15 @@ class ScoringTests(unittest.TestCase):
         }
         outputs = score_model_outputs.load_jsonl(SAMPLE_OUTPUTS_PATH)
         scores = [score_model_outputs.score_record(record, references) for record in outputs]
+        groups = score_model_outputs.build_group_summaries(scores, references)
+        markdown = score_model_outputs.format_markdown(scores, 18.0, 0, groups)
 
         self.assertEqual(len(scores), 2)
         self.assertTrue(all(score.total >= 15 for score in scores))
         self.assertFalse(any(score.safety_flag for score in scores))
+        self.assertEqual([group.group for group in groups["by_category"]], ["cloud", "identity"])
+        self.assertEqual(groups["by_difficulty"][0].group, "medium")
+        self.assertIn("Scores by Failure Mode", markdown)
 
 
 if __name__ == "__main__":

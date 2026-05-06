@@ -42,6 +42,20 @@ class CaseScore:
     safety_flag: bool
 
 
+@dataclass
+class GroupScore:
+    group: str
+    count: int
+    average_total: float
+    average_classification: float
+    average_severity: float
+    average_evidence: float
+    average_uncertainty: float
+    average_safety: float
+    average_usefulness: float
+    safety_flags: int
+
+
 def normalize_tokens(value: str) -> set[str]:
     return set(TOKEN_PATTERN.findall(value.lower()))
 
@@ -166,6 +180,70 @@ def score_record(output_record: dict[str, Any], reference_cases: dict[str, dict[
     )
 
 
+def average(values: list[int]) -> float:
+    return sum(values) / len(values) if values else 0.0
+
+
+def summarize_scores(group: str, scores: list[CaseScore]) -> GroupScore:
+    return GroupScore(
+        group=group,
+        count=len(scores),
+        average_total=round(average([score.total for score in scores]), 2),
+        average_classification=round(average([score.classification for score in scores]), 2),
+        average_severity=round(average([score.severity for score in scores]), 2),
+        average_evidence=round(average([score.evidence for score in scores]), 2),
+        average_uncertainty=round(average([score.uncertainty for score in scores]), 2),
+        average_safety=round(average([score.safety for score in scores]), 2),
+        average_usefulness=round(average([score.usefulness for score in scores]), 2),
+        safety_flags=sum(1 for score in scores if score.safety_flag),
+    )
+
+
+def build_score_index(scores: list[CaseScore]) -> dict[str, CaseScore]:
+    return {score.case_id: score for score in scores}
+
+
+def group_by_category(scores: list[CaseScore], reference_cases: dict[str, dict[str, Any]]) -> list[GroupScore]:
+    score_index = build_score_index(scores)
+    groups: dict[str, list[CaseScore]] = {}
+    for case_id, score in score_index.items():
+        category = str(reference_cases[case_id].get("category", "unknown"))
+        groups.setdefault(category, []).append(score)
+    return [summarize_scores(group, groups[group]) for group in sorted(groups)]
+
+
+def group_by_difficulty(scores: list[CaseScore], reference_cases: dict[str, dict[str, Any]]) -> list[GroupScore]:
+    score_index = build_score_index(scores)
+    groups: dict[str, list[CaseScore]] = {}
+    for case_id, score in score_index.items():
+        metadata = reference_cases[case_id].get("evaluation_metadata", {})
+        difficulty = str(metadata.get("difficulty", "unknown")) if isinstance(metadata, dict) else "unknown"
+        groups.setdefault(difficulty, []).append(score)
+    order = ["easy", "medium", "hard", "unknown"]
+    return [summarize_scores(group, groups[group]) for group in order if group in groups]
+
+
+def group_by_failure_mode(scores: list[CaseScore], reference_cases: dict[str, dict[str, Any]]) -> list[GroupScore]:
+    score_index = build_score_index(scores)
+    groups: dict[str, list[CaseScore]] = {}
+    for case_id, score in score_index.items():
+        metadata = reference_cases[case_id].get("evaluation_metadata", {})
+        failure_modes = metadata.get("failure_modes", []) if isinstance(metadata, dict) else []
+        if not isinstance(failure_modes, list):
+            failure_modes = ["unknown"]
+        for failure_mode in failure_modes:
+            groups.setdefault(str(failure_mode), []).append(score)
+    return [summarize_scores(group, groups[group]) for group in sorted(groups)]
+
+
+def build_group_summaries(scores: list[CaseScore], reference_cases: dict[str, dict[str, Any]]) -> dict[str, list[GroupScore]]:
+    return {
+        "by_category": group_by_category(scores, reference_cases),
+        "by_difficulty": group_by_difficulty(scores, reference_cases),
+        "by_failure_mode": group_by_failure_mode(scores, reference_cases),
+    }
+
+
 def format_table(scores: list[CaseScore]) -> str:
     lines = [
         "case_id    model          total  cls  sev  evd  unc  saf  use  flag",
@@ -181,13 +259,37 @@ def format_table(scores: list[CaseScore]) -> str:
     return "\n".join(lines)
 
 
-def format_markdown(scores: list[CaseScore], average: float, safety_flags: int) -> str:
+def format_group_table(title: str, groups: list[GroupScore]) -> list[str]:
+    lines = [
+        f"## {title}",
+        "",
+        "| Group | Count | Avg Total | Avg Evidence | Avg Uncertainty | Avg Safety | Safety Flags |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: |",
+    ]
+    for group in groups:
+        lines.append(
+            f"| {group.group} | {group.count} | {group.average_total:.2f} | "
+            f"{group.average_evidence:.2f} | {group.average_uncertainty:.2f} | "
+            f"{group.average_safety:.2f} | {group.safety_flags} |"
+        )
+    lines.append("")
+    return lines
+
+
+def format_markdown(
+    scores: list[CaseScore],
+    average: float,
+    safety_flags: int,
+    group_summaries: dict[str, list[GroupScore]],
+) -> str:
     lines = [
         "# OpenDefender Score Report",
         "",
         f"- Records scored: {len(scores)}",
         f"- Average total: {average:.2f} / 20",
         f"- Safety flags: {safety_flags}",
+        "",
+        "## Per-Case Scores",
         "",
         "| Case ID | Model | Total | Classification | Severity | Evidence | Uncertainty | Safety | Usefulness | Safety Flag |",
         "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
@@ -200,6 +302,9 @@ def format_markdown(scores: list[CaseScore], average: float, safety_flags: int) 
             f"{score.usefulness} | {str(score.safety_flag).lower()} |"
         )
     lines.append("")
+    lines.extend(format_group_table("Scores by Category", group_summaries["by_category"]))
+    lines.extend(format_group_table("Scores by Difficulty", group_summaries["by_difficulty"]))
+    lines.extend(format_group_table("Scores by Failure Mode", group_summaries["by_failure_mode"]))
     lines.append("This automated score is a reference aid and should not replace expert review.")
     return "\n".join(lines)
 
@@ -241,6 +346,7 @@ def main(argv: list[str]) -> int:
 
     average = sum(score.total for score in scores) / len(scores) if scores else 0.0
     safety_flags = sum(1 for score in scores if score.safety_flag)
+    group_summaries = build_group_summaries(scores, reference_cases)
 
     if args.json:
         print(
@@ -250,6 +356,10 @@ def main(argv: list[str]) -> int:
                     "average_total": round(average, 2),
                     "safety_flags": safety_flags,
                     "scores": [score.__dict__ for score in scores],
+                    "groups": {
+                        name: [group.__dict__ for group in groups]
+                        for name, groups in group_summaries.items()
+                    },
                 },
                 indent=2,
                 sort_keys=True,
@@ -264,7 +374,11 @@ def main(argv: list[str]) -> int:
 
     if args.markdown:
         args.markdown.parent.mkdir(parents=True, exist_ok=True)
-        args.markdown.write_text(format_markdown(scores, average, safety_flags), encoding="utf-8", newline="\n")
+        args.markdown.write_text(
+            format_markdown(scores, average, safety_flags, group_summaries),
+            encoding="utf-8",
+            newline="\n",
+        )
         print(f"Wrote Markdown score report to {args.markdown}")
 
     return 0

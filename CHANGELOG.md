@@ -8,3 +8,4 @@
 - Added generated dataset summary and release manifests.
 - Added GitHub Actions validation and stdlib unit tests.
 - Added case-level evaluation metadata for difficulty, coverage tags, and target failure modes.
+- Added grouped scoring summaries by category, difficulty, and target failure mode.

@@ -104,6 +104,8 @@ Score sample model output records with:
 python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
 ```
 
+The score report includes per-case scores plus grouped averages by category, difficulty, and target failure mode.
+
 Write a Markdown score report:
 
 ```bash
