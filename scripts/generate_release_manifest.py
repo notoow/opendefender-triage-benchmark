@@ -22,12 +22,13 @@ DEFAULT_ARTIFACTS = [
 ]
 
 
+def stable_text_bytes(path: Path) -> bytes:
+    text = path.read_text(encoding="utf-8")
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+
+
 def sha256_file(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as input_file:
-        for chunk in iter(lambda: input_file.read(1024 * 1024), b""):
-            digest.update(chunk)
-    return digest.hexdigest()
+    return hashlib.sha256(stable_text_bytes(path)).hexdigest()
 
 
 def load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -86,7 +87,7 @@ def build_manifest(repo_root: Path, dataset_path: Path, version_path: Path, arti
         artifacts.append(
             {
                 "path": artifact_path.as_posix(),
-                "bytes": full_path.stat().st_size,
+                "bytes": len(stable_text_bytes(full_path)),
                 "sha256": sha256_file(full_path),
             }
         )
