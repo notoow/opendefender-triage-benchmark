@@ -1,6 +1,6 @@
 # Dataset
 
-`sample_alerts.jsonl` contains synthetic defensive security alert examples. Each line is one JSON object.
+`sample_alerts.jsonl` contains 20 synthetic defensive security alert examples. Each line is one JSON object.
 
 The sample data is intentionally compact. It is meant to illustrate the benchmark format, not to represent a complete production corpus.
 
@@ -31,5 +31,7 @@ Dataset records should not include:
 - `endpoint`
 - `cloud`
 - `email`
+- `collaboration`
+- `network`
 
 Additional categories should keep the same defensive-only scope and follow `schemas/alert_case.schema.json`.

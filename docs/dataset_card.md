@@ -38,7 +38,7 @@ Each JSONL record includes:
 - Reference labels for expected triage behavior.
 - Safe defensive next actions.
 
-The initial sample covers identity, endpoint, cloud, and email alerts. Future versions may include collaboration, network, and additional benign or ambiguous cases.
+The initial sample covers identity, endpoint, cloud, email, collaboration, and network alerts. Future versions may include additional benign, ambiguous, and reviewer-challenging cases.
 
 ## Data Collection and Creation
 

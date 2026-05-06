@@ -14,4 +14,6 @@ Describe the dataset, evaluation, or documentation change.
 
 ```text
 python scripts/validate_dataset.py data/sample_alerts.jsonl
+python scripts/validate_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
+python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
 ```

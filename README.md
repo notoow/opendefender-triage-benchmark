@@ -24,6 +24,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
 - `scripts/validate_model_outputs.py` - no-dependency model-output validation script.
+- `scripts/score_model_outputs.py` - lightweight reference scorer for model outputs.
 
 ## Evaluation Scope
 
@@ -52,6 +53,12 @@ Validate model output records with:
 
 ```bash
 python scripts/validate_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
+```
+
+Score sample model output records with:
+
+```bash
+python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
 ```
 
 ## Safety Boundaries

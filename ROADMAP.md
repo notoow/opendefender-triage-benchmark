@@ -3,14 +3,14 @@
 ## Current
 
 - Define the alert case schema.
-- Publish a small synthetic sample dataset.
+- Publish a small synthetic sample dataset across multiple alert categories.
 - Document the scoring rubric and baseline prompt shape.
 - Add no-dependency validation for dataset records.
+- Add no-dependency validation and reference scoring for model output records.
 
 ## Next
 
 - Expand sample coverage across identity, endpoint, cloud, email, and collaboration scenarios.
-- Add a reference evaluator for model JSON outputs.
 - Add baseline run documentation for multiple model classes.
 - Add reviewer notes for ambiguous and benign cases.
 

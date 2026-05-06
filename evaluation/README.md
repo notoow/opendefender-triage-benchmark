@@ -39,3 +39,11 @@ The validator checks that every output has a known `case_id`, required output fi
 ## Scoring
 
 Use `rubric.md` to score classification accuracy, severity calibration, evidence grounding, uncertainty handling, defensive safety, and operational usefulness.
+
+For a quick automated reference score, run:
+
+```bash
+python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
+```
+
+The automated scorer is intentionally simple. Treat it as a consistency check and baseline comparison aid, not as a replacement for expert review.
