@@ -29,6 +29,11 @@
       "bytes": 1248,
       "path": "evaluation/prompt_template.md",
       "sha256": "329f163959955e91424de4e5f973db3cd30b84bb44f5dd16f44ca2b874b8a7eb"
+    },
+    {
+      "bytes": 3814,
+      "path": "docs/baseline_results.md",
+      "sha256": "cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde"
     }
   ],
   "case_count": 20,

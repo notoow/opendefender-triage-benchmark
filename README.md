@@ -19,6 +19,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `data/README.md` - dataset format, scope, and safety notes.
 - `docs/dataset_card.md` - dataset card with intended use, limitations, and safety notes.
 - `docs/dataset_summary.md` - generated summary of category, severity, and confidence coverage.
+- `docs/baseline_results.md` - generated heuristic baseline results report.
 - `docs/release_manifest.md` - generated release manifest with artifact hashes.
 - `docs/release_manifest.json` - machine-readable release manifest.
 - `examples/README.md` - example artifact descriptions.
@@ -28,6 +29,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `evaluation/output_schema.json` - expected model response shape for structured evaluations.
 - `evaluation/prompt_template.md` - defensive triage prompt template for baseline runs.
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
+- `scripts/generate_baseline_report.py` - generated heuristic baseline report.
 - `scripts/make_prompt_batch.py` - prompt batch generator for benchmark runs.
 - `scripts/generate_release_manifest.py` - deterministic release manifest generator.
 - `scripts/run_heuristic_baseline.py` - deterministic baseline runner for smoke tests.
@@ -72,6 +74,12 @@ Regenerate the release manifest:
 
 ```bash
 python scripts/generate_release_manifest.py --output-json docs/release_manifest.json --output-md docs/release_manifest.md
+```
+
+Regenerate the committed heuristic baseline report:
+
+```bash
+python scripts/generate_baseline_report.py --output docs/baseline_results.md
 ```
 
 Run unit tests:

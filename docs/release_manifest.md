@@ -72,6 +72,7 @@
 | `evaluation/output_schema.json` | 1292 | `399be156a31d4485a3d0ce1707586f37a5f321d3c991257b9e8375936208c299` |
 | `evaluation/rubric.md` | 2648 | `0f1c316778d28283bac3872cb2102b1a438f22eb6487d4ccf81ca7b3e723d7d3` |
 | `evaluation/prompt_template.md` | 1248 | `329f163959955e91424de4e5f973db3cd30b84bb44f5dd16f44ca2b874b8a7eb` |
+| `docs/baseline_results.md` | 3814 | `cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde` |
 
 Regenerate with:
 

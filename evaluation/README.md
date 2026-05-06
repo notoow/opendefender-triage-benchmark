@@ -24,6 +24,8 @@ python scripts/run_heuristic_baseline.py data/sample_alerts.jsonl --output .tmp/
 
 This baseline is not intended to be strong. It is a smoke test for the dataset, output schema, validators, and scoring pipeline.
 
+The committed `docs/baseline_results.md` report is generated from this baseline and checked in CI.
+
 ## Output Record Format
 
 Evaluation runs should store one JSON object per line:

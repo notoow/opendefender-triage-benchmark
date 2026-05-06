@@ -12,6 +12,7 @@ SCRIPTS_DIR = REPO_ROOT / "scripts"
 sys.path.insert(0, str(SCRIPTS_DIR))
 
 import make_prompt_batch  # noqa: E402
+import generate_baseline_report  # noqa: E402
 import generate_release_manifest  # noqa: E402
 import score_model_outputs  # noqa: E402
 import summarize_dataset  # noqa: E402
@@ -77,6 +78,13 @@ class SummaryTests(unittest.TestCase):
 
 
 class ReleaseManifestTests(unittest.TestCase):
+    def test_baseline_report_contains_grouped_results(self) -> None:
+        report = generate_baseline_report.generate_report(DATASET_PATH, REPO_ROOT / "DATASET_VERSION")
+
+        self.assertIn("Average total: 12.95 / 20", report)
+        self.assertIn("Scores by Failure Mode", report)
+        self.assertIn("| under_escalation | 4 | 11.75 |", report)
+
     def test_release_manifest_contains_version_and_hashes(self) -> None:
         manifest = generate_release_manifest.build_manifest(
             REPO_ROOT,
