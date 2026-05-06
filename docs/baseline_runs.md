@@ -79,9 +79,15 @@ python scripts/validate_model_outputs.py data/sample_alerts.jsonl path/to/model_
 python scripts/score_model_outputs.py data/sample_alerts.jsonl path/to/model_outputs.jsonl --markdown path/to/score_report.md
 ```
 
-6. Review `docs/reviewer_notes.md` before interpreting ambiguous, benign, or known-change cases.
+6. Generate a result card:
 
-7. Summarize public results with `docs/result_card_template.md`.
+```bash
+python scripts/generate_result_card.py --config path/to/run_config.json --outputs path/to/model_outputs.jsonl --output path/to/result_card.md
+```
+
+7. Review `docs/reviewer_notes.md` before interpreting ambiguous, benign, or known-change cases.
+
+8. Summarize public results with `docs/result_card_template.md` when a custom narrative is needed.
 
 ## Notes
 

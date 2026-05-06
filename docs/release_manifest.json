@@ -36,9 +36,14 @@
       "sha256": "329f163959955e91424de4e5f973db3cd30b84bb44f5dd16f44ca2b874b8a7eb"
     },
     {
-      "bytes": 3710,
+      "bytes": 3927,
       "path": "docs/baseline_runs.md",
-      "sha256": "cfe8564c003e5666d5b3a1e1d6a53d9ef0ff556ba0edb6c5526b0453e1257689"
+      "sha256": "fc0c47684a9bb4e38b6a925db0298485c1bb28056a600f53eafcf356c9b35448"
+    },
+    {
+      "bytes": 2757,
+      "path": "docs/baseline_result_card.md",
+      "sha256": "2c9b64f6dad0ffd504592064aa841a2a19f2b4fe3247d736a2272b2a5b38b728"
     },
     {
       "bytes": 2256,
@@ -56,9 +61,9 @@
       "sha256": "cead15d3b8aa0241ec11455541b527535b074c95377fc9802f97f09e3d659cde"
     },
     {
-      "bytes": 1804,
+      "bytes": 1984,
       "path": "docs/submitting_results.md",
-      "sha256": "5577827903cbc5c939bd92cd62684a06afd4e6d0ac4d64b5dd3c5f493fe1ec0a"
+      "sha256": "c4f16657ab22aeccfe7af63170a7898b1d6913426c67645e1536fc9738b95b51"
     },
     {
       "bytes": 886,

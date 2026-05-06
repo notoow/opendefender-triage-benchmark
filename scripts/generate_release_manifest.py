@@ -21,6 +21,7 @@ DEFAULT_ARTIFACTS = [
     "evaluation/rubric.md",
     "evaluation/prompt_template.md",
     "docs/baseline_runs.md",
+    "docs/baseline_result_card.md",
     "docs/dataset_quality.md",
     "docs/reviewer_notes.md",
     "docs/baseline_results.md",

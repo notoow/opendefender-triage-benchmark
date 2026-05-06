@@ -45,6 +45,12 @@ Score outputs:
 python scripts/score_model_outputs.py data/sample_alerts.jsonl path/to/model_outputs.jsonl --markdown path/to/score_report.md
 ```
 
+Generate a result card:
+
+```bash
+python scripts/generate_result_card.py --config path/to/run_config.json --outputs path/to/model_outputs.jsonl --output path/to/result_card.md
+```
+
 Summarize the run using `docs/result_card_template.md`.
 
 ## Interpreting Scores

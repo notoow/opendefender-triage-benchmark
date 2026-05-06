@@ -22,6 +22,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `docs/dataset_quality.md` - generated dataset quality-gate report.
 - `docs/reviewer_notes.md` - generated reviewer notes for ambiguous and benign cases.
 - `docs/baseline_runs.md` - baseline run matrix and run config guidance.
+- `docs/baseline_result_card.md` - generated public result card for the heuristic baseline.
 - `docs/baseline_results.md` - generated heuristic baseline results report.
 - `docs/release_manifest.md` - generated release manifest with artifact hashes.
 - `docs/release_manifest.json` - machine-readable release manifest.
@@ -42,6 +43,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `scripts/generate_release_manifest.py` - deterministic release manifest generator.
 - `scripts/check_dataset_quality.py` - deterministic dataset quality-gate checker.
 - `scripts/generate_reviewer_notes.py` - reviewer-note generator for ambiguous and benign cases.
+- `scripts/generate_result_card.py` - public result-card generator from run configs and outputs.
 - `scripts/run_heuristic_baseline.py` - deterministic baseline runner for smoke tests.
 - `scripts/summarize_dataset.py` - generated dataset coverage summary.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
@@ -103,6 +105,12 @@ Regenerate the committed heuristic baseline report:
 
 ```bash
 python scripts/generate_baseline_report.py --output docs/baseline_results.md
+```
+
+Regenerate the committed baseline result card:
+
+```bash
+python scripts/generate_result_card.py --output docs/baseline_result_card.md
 ```
 
 Validate the sample run config:

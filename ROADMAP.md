@@ -17,15 +17,15 @@
 - Add deterministic dataset quality gates and a committed quality report.
 - Add reviewer notes for ambiguous and benign cases.
 - Add baseline run documentation and run config validation.
+- Add a generated baseline result card.
 
 ## Next
 
 - Expand sample coverage across identity, endpoint, cloud, email, and collaboration scenarios.
-- Add baseline result cards for representative model families.
 
 ## Later
 
 - Publish a larger versioned dataset release.
 - Add inter-reviewer agreement notes for reference labels.
 - Add cost and latency reporting templates.
-- Add example result cards for comparable benchmark runs.
+- Add example result cards for additional comparable benchmark runs.

@@ -25,3 +25,11 @@ Run configs document dataset version, repository commit, model class, generation
 ```bash
 python scripts/validate_run_config.py examples/run_config.sample.json
 ```
+
+## Generate Result Card
+
+The committed baseline card is generated from the sample run config and deterministic heuristic outputs:
+
+```bash
+python scripts/generate_result_card.py --output docs/baseline_result_card.md
+```

@@ -33,6 +33,9 @@ jobs:
       - name: Check baseline report
         run: python scripts/generate_baseline_report.py --output docs/baseline_results.md --check
 
+      - name: Check baseline result card
+        run: python scripts/generate_result_card.py --output docs/baseline_result_card.md --check
+
       - name: Check release manifest
         run: python scripts/generate_release_manifest.py --output-json docs/release_manifest.json --output-md docs/release_manifest.md --check
 

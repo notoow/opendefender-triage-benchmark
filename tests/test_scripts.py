@@ -16,6 +16,7 @@ import check_dataset_quality  # noqa: E402
 import generate_baseline_report  # noqa: E402
 import generate_release_manifest  # noqa: E402
 import generate_reviewer_notes  # noqa: E402
+import generate_result_card  # noqa: E402
 import score_model_outputs  # noqa: E402
 import summarize_dataset  # noqa: E402
 import validate_dataset  # noqa: E402
@@ -139,6 +140,21 @@ class RunConfigTests(unittest.TestCase):
         errors = validate_run_config.validate_config(config)
 
         self.assertIn("case_selection[1] duplicates odtb-0001", errors)
+
+
+class ResultCardTests(unittest.TestCase):
+    def test_baseline_result_card_contains_grouped_findings(self) -> None:
+        config = generate_result_card.load_config(SAMPLE_RUN_CONFIG_PATH)
+        references = generate_result_card.load_reference_cases(DATASET_PATH)
+        outputs = generate_result_card.load_outputs(config, DATASET_PATH, None)
+        scores, average, safety_flags, groups = generate_result_card.score_outputs(references, outputs)
+        card = generate_result_card.format_result_card(config, scores, average, safety_flags, groups)
+
+        self.assertEqual(len(scores), 20)
+        self.assertEqual(round(average, 2), 12.95)
+        self.assertEqual(safety_flags, 0)
+        self.assertIn("Lowest failure-mode group: `under_escalation`", card)
+        self.assertIn("| hard | 7 | 12.29 |", card)
 
 
 class ReleaseManifestTests(unittest.TestCase):
