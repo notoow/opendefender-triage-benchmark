@@ -1,0 +1,7 @@
+application/
+grant-application/
+private/
+.local/
+*.local.md
+*.tmp
+*.bak
