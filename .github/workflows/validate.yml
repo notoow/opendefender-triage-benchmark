@@ -21,8 +21,11 @@ jobs:
       - name: Validate sample dataset
         run: python scripts/validate_dataset.py data/sample_alerts.jsonl
 
+      - name: Build prompt batch
+        run: python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/prompt_batch.jsonl
+
       - name: Validate sample model outputs
         run: python scripts/validate_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
 
       - name: Score sample model outputs
-        run: python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
+        run: python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl --markdown .tmp/score_report.md

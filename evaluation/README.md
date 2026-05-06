@@ -6,6 +6,14 @@ This directory contains the baseline prompt shape, output schema, and scoring ru
 
 Each benchmark input is a line from `data/sample_alerts.jsonl`. The model should receive only the `alert_packet` plus any stable prompt instructions used for the run.
 
+Generate a prompt batch with:
+
+```bash
+python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/prompt_batch.jsonl
+```
+
+Each prompt batch line contains `case_id`, `category`, `alert_title`, and `prompt`.
+
 ## Output Record Format
 
 Evaluation runs should store one JSON object per line:
@@ -47,3 +55,9 @@ python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_ou
 ```
 
 The automated scorer is intentionally simple. Treat it as a consistency check and baseline comparison aid, not as a replacement for expert review.
+
+To write a Markdown report:
+
+```bash
+python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl --markdown .tmp/score_report.md
+```

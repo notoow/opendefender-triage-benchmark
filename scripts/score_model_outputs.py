@@ -180,11 +180,35 @@ def format_table(scores: list[CaseScore]) -> str:
     return "\n".join(lines)
 
 
+def format_markdown(scores: list[CaseScore], average: float, safety_flags: int) -> str:
+    lines = [
+        "# OpenDefender Score Report",
+        "",
+        f"- Records scored: {len(scores)}",
+        f"- Average total: {average:.2f} / 20",
+        f"- Safety flags: {safety_flags}",
+        "",
+        "| Case ID | Model | Total | Classification | Severity | Evidence | Uncertainty | Safety | Usefulness | Safety Flag |",
+        "| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+    ]
+    for score in scores:
+        lines.append(
+            "| "
+            f"{score.case_id} | {score.model} | {score.total} | {score.classification} | "
+            f"{score.severity} | {score.evidence} | {score.uncertainty} | {score.safety} | "
+            f"{score.usefulness} | {str(score.safety_flag).lower()} |"
+        )
+    lines.append("")
+    lines.append("This automated score is a reference aid and should not replace expert review.")
+    return "\n".join(lines)
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description="Score OpenDefender model-output JSONL records.")
     parser.add_argument("dataset", type=Path, help="Reference dataset JSONL path")
     parser.add_argument("outputs", type=Path, help="Model output JSONL path")
     parser.add_argument("--json", action="store_true", help="Print machine-readable JSON instead of a table")
+    parser.add_argument("--markdown", type=Path, help="Write a Markdown score report to this path")
     args = parser.parse_args(argv[1:])
 
     try:
@@ -236,6 +260,11 @@ def main(argv: list[str]) -> int:
         print(f"records_scored: {len(scores)}")
         print(f"average_total: {average:.2f} / 20")
         print(f"safety_flags: {safety_flags}")
+
+    if args.markdown:
+        args.markdown.parent.mkdir(parents=True, exist_ok=True)
+        args.markdown.write_text(format_markdown(scores, average, safety_flags), encoding="utf-8", newline="\n")
+        print(f"Wrote Markdown score report to {args.markdown}")
 
     return 0
 

@@ -16,12 +16,14 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `data/sample_alerts.jsonl` - sample alert packets and expected triage metadata.
 - `data/README.md` - dataset format, scope, and safety notes.
 - `docs/dataset_card.md` - dataset card with intended use, limitations, and safety notes.
+- `examples/README.md` - example artifact descriptions.
 - `examples/model_outputs.sample.jsonl` - example model-output records for evaluation runs.
 - `evaluation/README.md` - evaluation run format and workflow.
 - `evaluation/rubric.md` - draft scoring rubric for model triage outputs.
 - `evaluation/output_schema.json` - expected model response shape for structured evaluations.
 - `evaluation/prompt_template.md` - defensive triage prompt template for baseline runs.
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
+- `scripts/make_prompt_batch.py` - prompt batch generator for benchmark runs.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
 - `scripts/validate_model_outputs.py` - no-dependency model-output validation script.
 - `scripts/score_model_outputs.py` - lightweight reference scorer for model outputs.
@@ -49,6 +51,12 @@ python scripts/validate_dataset.py data/sample_alerts.jsonl
 
 The validator checks JSONL parsing, required fields, duplicate IDs, controlled severity and confidence labels, and basic schema consistency.
 
+Build a prompt batch from the dataset:
+
+```bash
+python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/prompt_batch.jsonl
+```
+
 Validate model output records with:
 
 ```bash
@@ -59,6 +67,12 @@ Score sample model output records with:
 
 ```bash
 python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl
+```
+
+Write a Markdown score report:
+
+```bash
+python scripts/score_model_outputs.py data/sample_alerts.jsonl examples/model_outputs.sample.jsonl --markdown .tmp/score_report.md
 ```
 
 ## Safety Boundaries

@@ -1,5 +1,6 @@
 private/
 .local/
+.tmp/
 *.local.md
 *.tmp
 *.bak
