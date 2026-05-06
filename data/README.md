@@ -4,7 +4,7 @@
 
 The sample data is intentionally compact. It is meant to illustrate the benchmark format, not to represent a complete production corpus.
 
-See `../docs/dataset_summary.md` for generated category, severity, confidence, and known-change coverage.
+See `../docs/dataset_summary.md` for generated category, severity, confidence, difficulty, failure-mode, and known-change coverage.
 
 ## Record Format
 
@@ -15,6 +15,7 @@ Each alert case contains:
 - `alert_title`: short human-readable alert title.
 - `alert_packet`: normalized alert context provided to the model.
 - `expected`: reference triage metadata used for evaluation.
+- `evaluation_metadata`: tags for difficulty, coverage, and target failure modes.
 
 ## Safety Rules
 

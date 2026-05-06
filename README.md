@@ -50,6 +50,8 @@ The current scope covers compact alert packets across:
 
 Each example is designed to test whether a model can distinguish evidence from speculation and recommend proportionate defensive review steps.
 
+Cases include evaluation metadata for difficulty, coverage tags, and target failure modes such as over-escalation, under-escalation, missing-context handling, evidence grounding, and safe action scoping.
+
 ## Validation
 
 Validate the sample dataset with:

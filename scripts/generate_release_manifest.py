@@ -60,6 +60,20 @@ def count_field(records: list[dict[str, Any]], field_path: tuple[str, ...]) -> d
     return dict(sorted(counts.items()))
 
 
+def count_array_field(records: list[dict[str, Any]], field_path: tuple[str, ...]) -> dict[str, int]:
+    counts: Counter[str] = Counter()
+    for record in records:
+        value: Any = record
+        for field in field_path:
+            if not isinstance(value, dict):
+                value = None
+                break
+            value = value.get(field)
+        if isinstance(value, list):
+            counts.update(str(item) for item in value)
+    return dict(sorted(counts.items()))
+
+
 def build_manifest(repo_root: Path, dataset_path: Path, version_path: Path, artifact_paths: list[Path]) -> dict[str, Any]:
     records = load_jsonl(repo_root / dataset_path)
     version = (repo_root / version_path).read_text(encoding="utf-8").strip()
@@ -89,6 +103,8 @@ def build_manifest(repo_root: Path, dataset_path: Path, version_path: Path, arti
         "category_counts": count_field(records, ("category",)),
         "severity_counts": count_field(records, ("expected", "severity")),
         "confidence_counts": count_field(records, ("expected", "confidence")),
+        "difficulty_counts": count_field(records, ("evaluation_metadata", "difficulty")),
+        "failure_mode_counts": count_array_field(records, ("evaluation_metadata", "failure_modes")),
         "artifacts": artifacts,
     }
 
@@ -141,6 +157,30 @@ def format_markdown(manifest: dict[str, Any]) -> str:
     )
     for confidence, count in ordered_counts(manifest["confidence_counts"], ["low", "medium", "high"]):
         lines.append(f"| {confidence} | {count} |")
+
+    lines.extend(
+        [
+            "",
+            "## Difficulty Counts",
+            "",
+            "| Difficulty | Count |",
+            "| --- | ---: |",
+        ]
+    )
+    for difficulty, count in ordered_counts(manifest["difficulty_counts"], ["easy", "medium", "hard"]):
+        lines.append(f"| {difficulty} | {count} |")
+
+    lines.extend(
+        [
+            "",
+            "## Failure Mode Counts",
+            "",
+            "| Failure Mode | Count |",
+            "| --- | ---: |",
+        ]
+    )
+    for failure_mode, count in manifest["failure_mode_counts"].items():
+        lines.append(f"| {failure_mode} | {count} |")
 
     lines.extend(
         [

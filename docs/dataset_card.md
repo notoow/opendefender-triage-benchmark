@@ -37,6 +37,7 @@ Each JSONL record includes:
 - A normalized alert packet.
 - Reference labels for expected triage behavior.
 - Safe defensive next actions.
+- Evaluation metadata for difficulty, coverage tags, and target model failure modes.
 
 The initial sample covers identity, endpoint, cloud, email, collaboration, and network alerts. Future versions may include additional benign, ambiguous, and reviewer-challenging cases.
 

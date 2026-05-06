@@ -22,9 +22,10 @@ ALLOWED_CATEGORIES = {
 
 ALLOWED_SEVERITIES = {"informational", "low", "medium", "high", "critical"}
 ALLOWED_CONFIDENCE = {"low", "medium", "high"}
+ALLOWED_DIFFICULTY = {"easy", "medium", "hard"}
 CASE_ID_PATTERN = re.compile(r"^odtb-[0-9]{4,}$")
 
-TOP_LEVEL_KEYS = {"id", "category", "alert_title", "alert_packet", "expected"}
+TOP_LEVEL_KEYS = {"id", "category", "alert_title", "alert_packet", "expected", "evaluation_metadata"}
 ALERT_PACKET_KEYS = {
     "source",
     "signals",
@@ -41,6 +42,7 @@ EXPECTED_KEYS = {
     "missing_information",
     "safe_actions",
 }
+EVALUATION_METADATA_KEYS = {"difficulty", "tags", "failure_modes"}
 
 
 def is_non_empty_string(value: Any) -> bool:
@@ -141,6 +143,32 @@ def validate_case(record: Any, line_number: int, seen_ids: set[str]) -> list[str
         )
         errors.extend(
             f"{prefix}: {error}" for error in validate_string_array(expected.get("safe_actions"), "expected.safe_actions")
+        )
+
+    evaluation_metadata = record.get("evaluation_metadata")
+    if not isinstance(evaluation_metadata, dict):
+        errors.append(f"{prefix}: evaluation_metadata must be an object")
+    else:
+        errors.extend(
+            f"{prefix}: {error}"
+            for error in validate_exact_keys(
+                evaluation_metadata,
+                EVALUATION_METADATA_KEYS,
+                "evaluation_metadata",
+            )
+        )
+        if evaluation_metadata.get("difficulty") not in ALLOWED_DIFFICULTY:
+            errors.append(f"{prefix}: evaluation_metadata.difficulty must be one of {sorted(ALLOWED_DIFFICULTY)}")
+        errors.extend(
+            f"{prefix}: {error}"
+            for error in validate_string_array(evaluation_metadata.get("tags"), "evaluation_metadata.tags")
+        )
+        errors.extend(
+            f"{prefix}: {error}"
+            for error in validate_string_array(
+                evaluation_metadata.get("failure_modes"),
+                "evaluation_metadata.failure_modes",
+            )
         )
 
     return errors

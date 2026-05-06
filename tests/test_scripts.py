@@ -71,6 +71,9 @@ class SummaryTests(unittest.TestCase):
         self.assertIn("| Total cases | 20 |", summary)
         self.assertIn("| endpoint | 5 |", summary)
         self.assertIn("| medium | 8 |", summary)
+        self.assertIn("## Difficulty Distribution", summary)
+        self.assertIn("| hard | 7 |", summary)
+        self.assertIn("| evidence_grounding | 9 |", summary)
 
 
 class ReleaseManifestTests(unittest.TestCase):
@@ -84,6 +87,8 @@ class ReleaseManifestTests(unittest.TestCase):
 
         self.assertEqual(manifest["dataset_version"], "0.1.0")
         self.assertEqual(manifest["case_count"], 20)
+        self.assertEqual(manifest["difficulty_counts"]["hard"], 7)
+        self.assertEqual(manifest["failure_mode_counts"]["over_escalation"], 8)
         self.assertEqual(len(manifest["artifacts"]), len(generate_release_manifest.DEFAULT_ARTIFACTS))
         self.assertTrue(all(len(artifact["sha256"]) == 64 for artifact in manifest["artifacts"]))
 

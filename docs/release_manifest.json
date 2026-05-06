@@ -6,14 +6,14 @@
       "sha256": "e9dd8507f4bf0c6f42458e41aea833ad0bd3f6127272335eee9bf4d58541ed67"
     },
     {
-      "bytes": 17598,
+      "bytes": 21088,
       "path": "data/sample_alerts.jsonl",
-      "sha256": "7c8f0f66eeb8628e300292ac3f2ccda95e955e2d1853b49567e33dda41386d02"
+      "sha256": "f713f0dd9c5fbcf9100b1f02f6fcbb772041f3b245e2481efe87bc2edff3ccae"
     },
     {
-      "bytes": 2667,
+      "bytes": 3334,
       "path": "schemas/alert_case.schema.json",
-      "sha256": "a61fbd11bc7dc417184fa8d7c6e43cf1bc4d2086aaf676f54f9a12572f83da99"
+      "sha256": "124dcd1d730fa0d820bc86aceada4cf2e0cd37e705da46bb653e477830426831"
     },
     {
       "bytes": 1292,
@@ -48,6 +48,24 @@
   "dataset_name": "OpenDefender Triage Benchmark",
   "dataset_path": "data/sample_alerts.jsonl",
   "dataset_version": "0.1.0",
+  "difficulty_counts": {
+    "easy": 3,
+    "hard": 7,
+    "medium": 10
+  },
+  "failure_mode_counts": {
+    "access_review_reasoning": 1,
+    "benign_context": 3,
+    "change_ticket_reasoning": 3,
+    "confidence_calibration": 4,
+    "data_exposure_reasoning": 1,
+    "evidence_grounding": 9,
+    "missing_context_handling": 6,
+    "over_escalation": 8,
+    "safe_action_scoping": 7,
+    "severity_calibration": 2,
+    "under_escalation": 4
+  },
   "first_case_id": "odtb-0001",
   "last_case_id": "odtb-0020",
   "manifest_version": 1,

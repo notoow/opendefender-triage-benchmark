@@ -50,6 +50,20 @@ def count_known_change(records: list[dict[str, Any]]) -> Counter[str]:
     return counts
 
 
+def count_array_field(records: list[dict[str, Any]], field_path: tuple[str, ...]) -> Counter[str]:
+    counts: Counter[str] = Counter()
+    for record in records:
+        value: Any = record
+        for field in field_path:
+            if not isinstance(value, dict):
+                value = None
+                break
+            value = value.get(field)
+        if isinstance(value, list):
+            counts.update(str(item) for item in value)
+    return counts
+
+
 def ordered_items(counts: Counter[str], order: list[str] | None) -> list[tuple[str, int]]:
     if order is None:
         return sorted(counts.items())
@@ -77,6 +91,9 @@ def generate_summary(records: list[dict[str, Any]], source_path: Path) -> str:
     severities = count_field(records, ("expected", "severity"))
     confidence = count_field(records, ("expected", "confidence"))
     known_changes = count_known_change(records)
+    difficulty = count_field(records, ("evaluation_metadata", "difficulty"))
+    tags = count_array_field(records, ("evaluation_metadata", "tags"))
+    failure_modes = count_array_field(records, ("evaluation_metadata", "failure_modes"))
 
     case_ids = [str(record.get("id")) for record in records]
     first_case = min(case_ids) if case_ids else "n/a"
@@ -114,6 +131,9 @@ def generate_summary(records: list[dict[str, Any]], source_path: Path) -> str:
     )
     lines.extend(format_count_table("Expected Confidence Distribution", confidence, ["low", "medium", "high"]))
     lines.extend(format_count_table("Known Change Ticket Distribution", known_changes, ["absent", "present"]))
+    lines.extend(format_count_table("Difficulty Distribution", difficulty, ["easy", "medium", "hard"]))
+    lines.extend(format_count_table("Tag Coverage", tags))
+    lines.extend(format_count_table("Failure Mode Coverage", failure_modes))
 
     lines.extend(
         [
