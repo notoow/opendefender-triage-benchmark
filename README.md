@@ -16,6 +16,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `data/sample_alerts.jsonl` - sample alert packets and expected triage metadata.
 - `data/README.md` - dataset format, scope, and safety notes.
 - `docs/dataset_card.md` - dataset card with intended use, limitations, and safety notes.
+- `docs/dataset_summary.md` - generated summary of category, severity, and confidence coverage.
 - `examples/README.md` - example artifact descriptions.
 - `examples/model_outputs.sample.jsonl` - example model-output records for evaluation runs.
 - `evaluation/README.md` - evaluation run format and workflow.
@@ -25,6 +26,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `schemas/alert_case.schema.json` - JSON Schema for alert case records.
 - `scripts/make_prompt_batch.py` - prompt batch generator for benchmark runs.
 - `scripts/run_heuristic_baseline.py` - deterministic baseline runner for smoke tests.
+- `scripts/summarize_dataset.py` - generated dataset coverage summary.
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
 - `scripts/validate_model_outputs.py` - no-dependency model-output validation script.
 - `scripts/score_model_outputs.py` - lightweight reference scorer for model outputs.
@@ -51,6 +53,12 @@ python scripts/validate_dataset.py data/sample_alerts.jsonl
 ```
 
 The validator checks JSONL parsing, required fields, duplicate IDs, controlled severity and confidence labels, and basic schema consistency.
+
+Regenerate the dataset summary:
+
+```bash
+python scripts/summarize_dataset.py data/sample_alerts.jsonl --output docs/dataset_summary.md
+```
 
 Build a prompt batch from the dataset:
 

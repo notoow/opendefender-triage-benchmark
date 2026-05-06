@@ -40,6 +40,8 @@ Each JSONL record includes:
 
 The initial sample covers identity, endpoint, cloud, email, collaboration, and network alerts. Future versions may include additional benign, ambiguous, and reviewer-challenging cases.
 
+See `dataset_summary.md` for generated coverage counts.
+
 ## Data Collection and Creation
 
 The sample records are synthetic. They are written to resemble common defensive alert patterns without using real customer logs, personal data, secrets, credentials, or proprietary incident material.

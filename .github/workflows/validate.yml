@@ -21,6 +21,9 @@ jobs:
       - name: Validate sample dataset
         run: python scripts/validate_dataset.py data/sample_alerts.jsonl
 
+      - name: Check dataset summary
+        run: python scripts/summarize_dataset.py data/sample_alerts.jsonl --output docs/dataset_summary.md --check
+
       - name: Build prompt batch
         run: python scripts/make_prompt_batch.py data/sample_alerts.jsonl --output .tmp/prompt_batch.jsonl
 

@@ -4,6 +4,8 @@
 
 The sample data is intentionally compact. It is meant to illustrate the benchmark format, not to represent a complete production corpus.
 
+See `../docs/dataset_summary.md` for generated category, severity, confidence, and known-change coverage.
+
 ## Record Format
 
 Each alert case contains:
