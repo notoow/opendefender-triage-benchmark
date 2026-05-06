@@ -10,6 +10,7 @@
 - Add prompt batch generation for reproducible baseline runs.
 - Add a deterministic baseline runner for end-to-end smoke tests.
 - Add generated dataset coverage summaries.
+- Add unit tests for the validation, prompt, summary, and scoring scripts.
 
 ## Next
 

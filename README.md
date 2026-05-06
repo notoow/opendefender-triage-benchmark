@@ -30,6 +30,7 @@ The benchmark focuses on a narrow, practical question: given a realistic alert p
 - `scripts/validate_dataset.py` - no-dependency dataset validation script.
 - `scripts/validate_model_outputs.py` - no-dependency model-output validation script.
 - `scripts/score_model_outputs.py` - lightweight reference scorer for model outputs.
+- `tests/` - stdlib unit tests for the validation and scoring scripts.
 
 ## Evaluation Scope
 
@@ -58,6 +59,12 @@ Regenerate the dataset summary:
 
 ```bash
 python scripts/summarize_dataset.py data/sample_alerts.jsonl --output docs/dataset_summary.md
+```
+
+Run unit tests:
+
+```bash
+python -m unittest discover -s tests
 ```
 
 Build a prompt batch from the dataset:
